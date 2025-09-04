@@ -1,7 +1,7 @@
 package com.example.Customer.service;
 
 import com.example.Customer.api.dto.CustomerDto;
-import com.example.Customer.data.CustomerStorage;
+import com.example.Customer.data.StorageServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class CustomerService {
 
-    private final CustomerStorage storage;
+    private final StorageServiceImpl storage;
 
-    public CustomerService(CustomerStorage storage) {
+    public CustomerService(StorageServiceImpl storage) {
         this.storage = storage;
     }
 
