@@ -2,12 +2,13 @@ package com.example.Customer.service;
 
 import com.example.Customer.api.dto.CustomerDto;
 import com.example.Customer.data.StorageService;
-import com.example.Customer.data.StorageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.LocaleResolver;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class CustomerService {
@@ -15,9 +16,32 @@ public class CustomerService {
     private final StorageService storage;
 
 
+
     @Autowired
     public CustomerService(StorageService storage) {
         this.storage = storage;
+    }
+
+    public List<CustomerDto> createBulkCustomer(int amount) {
+         List<CustomerDto> dtos = new ArrayList<>();
+
+        Random random = new Random();
+
+        String[] names = {"Murat", "Husnu", "Karabas", "Barıs", "Ayse", "Esra"};
+        String[] surnames = {"Samet", "Burak", "Camur", "Akturk", "Baran"};
+        for (int i = 0; i < amount; i++) {
+            CustomerDto dto = new CustomerDto();
+            dto.setName(names[random.nextInt(names.length)]);
+            dto.setSurname(surnames[random.nextInt(surnames.length)]);
+
+            int year = random.nextInt(1900);
+            int month = random.nextInt(12) + 1;
+            int day = random.nextInt(28) + 1;
+            save(dto);
+            dtos.add(dto);
+
+        }
+return dtos;
     }
 
 
@@ -63,4 +87,7 @@ public class CustomerService {
             storage.deleteById(id);
         }
     }
+
+
+
 

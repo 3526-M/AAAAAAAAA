@@ -23,8 +23,6 @@ class CustomerController
         return service.save(customer);
     }
 
-
-
     @GetMapping
     public List<CustomerDto> getAllCustomers() {
         return service.findAll();
@@ -39,7 +37,14 @@ class CustomerController
     public void deleteCustomer(@PathVariable Long id) {
         service.deleteById(id);
     }
+
+    @PostMapping("/createBulkCustomer")
+    public List<CustomerDto> createBulkCustomer(@RequestBody int amount) {
+        return service.createBulkCustomer(amount);
+
+    }
 }
+
 
 
 

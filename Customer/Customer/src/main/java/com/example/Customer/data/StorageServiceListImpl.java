@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Service
-public class StorageServiceImpl implements StorageService {
+public class StorageServiceListImpl implements StorageService {
 
 
     private final List<Customer> customers = new ArrayList<>();
