@@ -38,6 +38,7 @@ class CustomerController
         service.deleteById(id);
     }
 
+
     @PostMapping("/createBulkCustomer")
     public List<CustomerDto> createBulkCustomer(@RequestBody int amount) {
         return service.createBulkCustomer(amount);

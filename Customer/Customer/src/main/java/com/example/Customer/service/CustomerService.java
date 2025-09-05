@@ -23,7 +23,7 @@ public class CustomerService {
     }
 
     public List<CustomerDto> createBulkCustomer(int amount) {
-         List<CustomerDto> dtos = new ArrayList<>();
+        List<CustomerDto> dtos = new ArrayList<>();
 
         Random random = new Random();
 
@@ -41,7 +41,7 @@ public class CustomerService {
             dtos.add(dto);
 
         }
-return dtos;
+        return dtos;
     }
 
 
