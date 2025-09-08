@@ -4,8 +4,12 @@ package com.example.Customer.api;
 
 import com.example.Customer.api.dto.CreateBulkCustomersRequestDto;
 import com.example.Customer.api.dto.CustomerDto;
+import com.example.Customer.api.dto.CustomerIdRequest;
 import com.example.Customer.service.CustomerService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -29,9 +33,17 @@ class CustomerController
         return service.findAll();
     }
 
-    @GetMapping("/{id}")
-    public CustomerDto getCustomerById(@PathVariable Long id) {
-        return service.findById(id);
+    @PostMapping("/findCustomerById")
+    public CustomerDto getCustomerById(@RequestBody CustomerIdRequest customerIdRequest) {
+        long startTime = System.nanoTime();
+        CustomerDto customer = service.findById(customerIdRequest.getId());
+
+        if (customer == null) {
+           throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found");
+        }
+        long elapsedTime = System.nanoTime() - startTime;
+        System.out.println((elapsedTime / 1000000.0) + " ms");
+        return customer;
     }
 
     @DeleteMapping("/{id}")
@@ -41,7 +53,7 @@ class CustomerController
 
 
     @PostMapping("/createBulkCustomer")
-    public List<CustomerDto> CreateBulkCustomersRequestDto(@RequestBody CreateBulkCustomersRequestDto createBulkCustomersRequestDto) {
+    public List<CustomerDto> createBulkCustomersRequestDto(@RequestBody CreateBulkCustomersRequestDto createBulkCustomersRequestDto) {
         return service.createBulkCustomer(createBulkCustomersRequestDto.getAmount());
 
     }
