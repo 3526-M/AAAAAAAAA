@@ -5,6 +5,7 @@ package com.example.Customer.api;
 import com.example.Customer.api.dto.CreateBulkCustomersRequestDto;
 import com.example.Customer.api.dto.CustomerDto;
 import com.example.Customer.api.dto.CustomerIdRequest;
+import com.example.Customer.api.dto.TimedFindCustomerResponse;
 import com.example.Customer.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,16 +35,17 @@ class CustomerController
     }
 
     @PostMapping("/findCustomerById")
-    public CustomerDto getCustomerById(@RequestBody CustomerIdRequest customerIdRequest) {
+    public TimedFindCustomerResponse getCustomerById(@RequestBody CustomerIdRequest customerIdRequest) {
         long startTime = System.nanoTime();
         CustomerDto customer = service.findById(customerIdRequest.getId());
 
         if (customer == null) {
            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found");
         }
-        long elapsedTime = System.nanoTime() - startTime;
+        long endTime = System.nanoTime();
+        long elapsedTime = endTime - startTime;
         System.out.println((elapsedTime / 1000000.0) + " ms");
-        return customer;
+        return new TimedFindCustomerResponse(customer, elapsedTime);
     }
 
     @DeleteMapping("/{id}")
