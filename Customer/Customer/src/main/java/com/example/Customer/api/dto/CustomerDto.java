@@ -1,12 +1,13 @@
 package com.example.Customer.api.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class CustomerDto {
 
     private String name;
     private String surname;
-    private Date birthDate;
+    private LocalDate birthDate;
 
     public String getName() {
         return name;
@@ -24,11 +25,11 @@ public class CustomerDto {
         this.surname = surname;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 }

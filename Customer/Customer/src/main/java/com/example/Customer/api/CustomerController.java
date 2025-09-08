@@ -2,6 +2,7 @@ package com.example.Customer.api;
 
 
 
+import com.example.Customer.api.dto.CreateBulkCustomersRequestDto;
 import com.example.Customer.api.dto.CustomerDto;
 import com.example.Customer.service.CustomerService;
 import org.springframework.web.bind.annotation.*;
@@ -40,8 +41,8 @@ class CustomerController
 
 
     @PostMapping("/createBulkCustomer")
-    public List<CustomerDto> createBulkCustomer(@RequestBody int amount) {
-        return service.createBulkCustomer(amount);
+    public List<CustomerDto> CreateBulkCustomersRequestDto(@RequestBody CreateBulkCustomersRequestDto createBulkCustomersRequestDto) {
+        return service.createBulkCustomer(createBulkCustomersRequestDto.getAmount());
 
     }
 }

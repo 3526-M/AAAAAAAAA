@@ -2,6 +2,9 @@ package com.example.Customer.service;
 
 
 
+import org.springframework.cglib.core.Local;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -11,7 +14,7 @@ public class Customer {
     private Long id;
     private String name;
     private String surname;
-    private Date birthDate;
+    private LocalDate birthDate;
 
 
     public Long getId() {
@@ -30,19 +33,17 @@ public class Customer {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
+    public String getSurname() {return surname;}
 
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 }

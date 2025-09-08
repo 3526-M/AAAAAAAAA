@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.LocaleResolver;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class CustomerService {
@@ -34,10 +33,18 @@ public class CustomerService {
             dto.setName(names[random.nextInt(names.length)]);
             dto.setSurname(surnames[random.nextInt(surnames.length)]);
 
-            int year = random.nextInt(1900);
-            int month = random.nextInt(12) + 1;
-            int day = random.nextInt(28) + 1;
-            save(dto);
+            int minDay = (int) LocalDate.of(1900, 1, 1).toEpochDay();
+            int maxDay = (int) LocalDate.of(2015, 1, 1).toEpochDay();
+            long randomDay = minDay + random.nextInt(maxDay - minDay);
+
+            LocalDate birthDate = LocalDate.ofEpochDay(randomDay);
+            dto.setBirthDate(birthDate);
+
+            Customer c = new Customer();
+            c.setName(dto.getName());
+            c.setSurname(dto.getSurname());
+            c.setBirthDate(birthDate);
+            storage.saveCustomer(c);
             dtos.add(dto);
 
         }
