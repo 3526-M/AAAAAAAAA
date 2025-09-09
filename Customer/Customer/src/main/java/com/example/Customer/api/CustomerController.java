@@ -45,7 +45,7 @@ class CustomerController
         long endTime = System.nanoTime();
         long elapsedTime = endTime - startTime;
         System.out.println((elapsedTime / 1000000.0) + " ms");
-        int elapsedTimeMs = (int) (elapsedTime / 1000000.0);
+        long elapsedTimeMs = (elapsedTime / 1000000);
         return new TimedFindCustomerResponse(customer, elapsedTimeMs);
     }
 
