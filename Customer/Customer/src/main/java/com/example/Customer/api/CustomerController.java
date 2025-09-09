@@ -45,7 +45,8 @@ class CustomerController
         long endTime = System.nanoTime();
         long elapsedTime = endTime - startTime;
         System.out.println((elapsedTime / 1000000.0) + " ms");
-        return new TimedFindCustomerResponse(customer, elapsedTime);
+        int elapsedTimeMs = (int) (elapsedTime / 1000000.0);
+        return new TimedFindCustomerResponse(customer, elapsedTimeMs);
     }
 
     @DeleteMapping("/{id}")
