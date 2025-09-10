@@ -78,16 +78,16 @@ public class CustomerService {
     }
 
     public CustomerDto findById(Long id) {
-        for (Customer c : storage.findAll()) {
-            if (c.getId().equals(id)) {
+        Customer c = storage.findById(id);
+        if (c == null){
+            return null;
+        }
                 CustomerDto dto = new CustomerDto();
                 dto.setName(c.getName());
                 dto.setSurname(c.getSurname());
                 dto.setBirthDate(c.getBirthDate());
                 return dto;
-            }
-        }
-        return null;
+
     }
 
         public void deleteById(Long id) {

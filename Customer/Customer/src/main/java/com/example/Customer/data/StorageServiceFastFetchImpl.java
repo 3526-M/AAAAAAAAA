@@ -1,12 +1,19 @@
 package com.example.Customer.data;
 
 import com.example.Customer.service.Customer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@ConditionalOnProperty(
+        name = "customer_service.fast_fetch_enabled",
+        havingValue = "true"
+)
+@Service
 public class StorageServiceFastFetchImpl implements StorageService {
 
 
@@ -15,7 +22,7 @@ public class StorageServiceFastFetchImpl implements StorageService {
     public Customer saveCustomer(Customer customer) {
         if (customer.getId() == null) {
             idCounter++;
-            customer.setId(idCounter++);
+            customer.setId(idCounter);
         }
         customers.put(customer.getId(), customer);
         return customer;
