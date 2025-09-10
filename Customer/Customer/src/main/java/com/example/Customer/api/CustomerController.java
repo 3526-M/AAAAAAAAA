@@ -1,14 +1,12 @@
 package com.example.Customer.api;
 
 
-
 import com.example.Customer.api.dto.CreateBulkCustomersRequestDto;
 import com.example.Customer.api.dto.CustomerDto;
 import com.example.Customer.api.dto.CustomerIdRequest;
 import com.example.Customer.api.dto.TimedFindCustomerResponse;
 import com.example.Customer.service.CustomerService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -16,14 +14,16 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/saveCustomer")
-class CustomerController
-{
+@RequestMapping("/api/customer")
+class CustomerController {
+
     private final CustomerService service;
+
     public CustomerController(CustomerService service)
     {
         this.service = service;
     }
+
     @PostMapping
     public CustomerDto createCustomer(@RequestBody CustomerDto customer) {
         return service.save(customer);
@@ -54,11 +54,9 @@ class CustomerController
         service.deleteById(id);
     }
 
-
     @PostMapping("/createBulkCustomer")
     public List<CustomerDto> createBulkCustomersRequestDto(@RequestBody CreateBulkCustomersRequestDto createBulkCustomersRequestDto) {
         return service.createBulkCustomer(createBulkCustomersRequestDto.getAmount());
-
     }
 }
 

@@ -1,7 +1,6 @@
 package com.example.Customer.api.dto;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class CustomerDto {
 

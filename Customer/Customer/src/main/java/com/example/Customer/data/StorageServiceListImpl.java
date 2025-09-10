@@ -2,7 +2,6 @@ package com.example.Customer.data;
 
 
 import com.example.Customer.service.Customer;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
@@ -34,19 +33,19 @@ public class StorageServiceListImpl implements StorageService {
     public List<Customer> findAll() {
         return customers;
     }
-    public Customer findById(Long id){
-        for(Customer customer : customers){
-            if(customer.getId().equals(id)){
-            return customer;
+
+    @Override
+    public Customer findById(Long id) {
+        for (Customer customer : customers) {
+            if (customer.getId().equals(id)) {
+                return customer;
             }
         }
         return null;
     }
 
+    @Override
     public void  deleteById(Long id){
         customers.removeIf(customer -> customer.getId().equals(id));
-
     }
-
-
 }

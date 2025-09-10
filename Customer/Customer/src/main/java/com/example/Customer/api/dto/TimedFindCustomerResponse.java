@@ -13,12 +13,15 @@ public class TimedFindCustomerResponse {
     public CustomerDto getCustomer() {
         return customer;
     }
+
     public void setCustomer(CustomerDto customer) {
         this.customer = customer;
     }
+
     public long getElapsedTime() {
         return elapsedTime;
     }
+
     public void setElapsedTime(long elapsedTime) {
         this.elapsedTime = elapsedTime;
     }

@@ -19,6 +19,8 @@ public class StorageServiceFastFetchImpl implements StorageService {
 
     private final Map<Long, Customer> customers = new HashMap<>();
     private long idCounter = 0;
+
+    @Override
     public Customer saveCustomer(Customer customer) {
         if (customer.getId() == null) {
             idCounter++;
@@ -37,9 +39,9 @@ public class StorageServiceFastFetchImpl implements StorageService {
     public Customer findById(Long id) {
         return customers.get(id);
     }
+
     @Override
     public void deleteById(Long id) {
         customers.remove(id);
     }
-
 }
