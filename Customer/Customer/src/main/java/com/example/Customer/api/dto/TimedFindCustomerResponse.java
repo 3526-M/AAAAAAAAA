@@ -25,4 +25,5 @@ public class TimedFindCustomerResponse {
     public void setElapsedTime(long elapsedTime) {
         this.elapsedTime = elapsedTime;
     }
+
 }

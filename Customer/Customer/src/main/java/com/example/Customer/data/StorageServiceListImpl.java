@@ -5,6 +5,7 @@ import com.example.Customer.service.Customer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,4 +49,9 @@ public class StorageServiceListImpl implements StorageService {
     public void  deleteById(Long id){
         customers.removeIf(customer -> customer.getId().equals(id));
     }
+
+    public List<Customer> findCustomersBornBetween(LocalDate startDate, LocalDate endDate ){
+        throw new UnsupportedOperationException("No");
+    }
+
 }

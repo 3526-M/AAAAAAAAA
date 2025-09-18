@@ -1,15 +1,25 @@
 package com.example.Customer.service;
 
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 
-
+@Entity
+@Table( name = "Customer")
 public class Customer {
 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false )
     private String name;
+    @Column(nullable = false )
     private String surname;
+    @Column(nullable = false )
     private LocalDate birthDate;
 
 
@@ -42,6 +52,7 @@ public class Customer {
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
+
 }
 
 
